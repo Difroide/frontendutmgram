@@ -3,6 +3,7 @@ import { Minus, Square, X, Maximize2, MoreHorizontal, Plus } from 'lucide-react'
 import { TitlebarProfile } from './TitlebarProfile'
 import { SettingsModal, type SettingsSection } from './SettingsModal'
 import { useTheme } from '@/contexts/ThemeContext'
+import { useModo } from '@/contexts/ModoContext'
 import { useTabs } from '@/contexts/TabContext'
 
 export const Titlebar = () => {
@@ -10,7 +11,9 @@ export const Titlebar = () => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
   const [settingsInitialSection, setSettingsInitialSection] = useState<SettingsSection>('geral')
   const { currentTheme } = useTheme()
+  const { modo } = useModo()
   const { tabs, activeTabId, setActiveTab, closeTab, openTab } = useTabs()
+  const showRyuk = modo !== 'difroide' && modo !== 'ruivo'
 
   useEffect(() => {
     // Verificar estado inicial
@@ -113,16 +116,18 @@ export const Titlebar = () => {
       }}
       onDoubleClick={handleDoubleClick}
     >
-      {/* Logo Utmgram, MODO RYUK e botão de configurações */}
+      {/* Logo Utmgram (RYUK só no modo ryu), botão de configurações */}
       <div className="flex items-center gap-2 flex-shrink-0" style={{ paddingLeft: '16px' }}>
         <div style={{ WebkitAppRegion: 'drag' as any }} className="flex items-center gap-2">
           <h1 className="text-lg font-bold text-white tracking-tight">
             <span className="font-extrabold">Utm</span>
             <span className="font-extrabold" style={{ color: currentTheme.colors.primary }}>gram.</span>
           </h1>
-          <p className="text-xs font-black bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-            RYUK
-          </p>
+          {showRyuk && (
+            <p className="text-xs font-black bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+              RYUK
+            </p>
+          )}
         </div>
         <button
           onClick={() => {

@@ -74,12 +74,13 @@ export const TransferirEntreOpsModal = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
       <div
-        className="bg-gray-800 border border-gray-700 rounded-xl shadow-xl w-full max-w-md overflow-hidden"
+        className="bg-gray-800/40 backdrop-blur-xl border border-gray-600/30 border-blue-500/20 rounded-xl shadow-2xl w-full max-w-md overflow-hidden"
+        style={{ backgroundColor: 'rgba(31, 41, 55, 0.45)', backdropFilter: 'blur(24px) saturate(160%)' }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-700">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-600/30 border-blue-500/10 bg-gray-800/30 backdrop-blur-sm">
           <h2 className="text-lg font-semibold text-gray-100 flex items-center gap-2">
             <ArrowRightLeft className="w-5 h-5" style={{ color: currentTheme.colors.primary }} />
             Transferir contas para outra operação

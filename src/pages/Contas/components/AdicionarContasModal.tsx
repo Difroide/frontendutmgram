@@ -697,10 +697,13 @@ export const AdicionarContasModal = ({ isOpen, onClose, onSuccess }: AdicionarCo
   }
 
   return (
-    <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
-      <div className="bg-[#161b22] rounded-xl border border-gray-700 shadow-xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+      <div
+        className="bg-gray-800/40 backdrop-blur-xl rounded-xl border border-gray-600/30 border-blue-500/20 shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col"
+        style={{ backgroundColor: 'rgba(31, 41, 55, 0.45)', backdropFilter: 'blur(24px) saturate(160%)' }}
+      >
         {/* Header */}
-        <div className="flex items-center justify-between p-5 border-b border-gray-800">
+        <div className="flex items-center justify-between p-5 border-b border-gray-600/30 border-blue-500/10 bg-gray-800/30 backdrop-blur-sm">
           <div>
             <h2 className="text-lg font-semibold text-gray-100">Adicionar Contas</h2>
             <p className="text-xs text-gray-500 mt-0.5">

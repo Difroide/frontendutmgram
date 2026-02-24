@@ -41,8 +41,8 @@ export const VerificacaoResumoModal = ({ isOpen, onClose, resumo }: VerificacaoR
         className="w-full max-w-3xl max-h-[90vh] bg-gray-800/40 backdrop-blur-xl rounded-xl border border-gray-600/30 border-blue-500/20 shadow-2xl overflow-hidden flex flex-col"
         style={{ backgroundColor: 'rgba(31, 41, 55, 0.45)', backdropFilter: 'blur(24px) saturate(160%)' }}
       >
-        {/* Header */}
-        <div className="flex-shrink-0 flex items-center justify-between gap-3 p-5 border-b border-gray-800">
+        {/* Header - Liquid glass + azul */}
+        <div className="flex-shrink-0 flex items-center justify-between gap-3 p-5 border-b border-gray-600/30 border-blue-500/10 bg-gray-800/30 backdrop-blur-sm">
           <div className="flex items-center gap-3">
             <CheckCircle className="w-5 h-5 text-green-500" />
             <div>

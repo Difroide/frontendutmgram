@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useModo } from '@/contexts/ModoContext'
 import './LoadingScreen.css'
 
 interface LoadingScreenProps {
@@ -6,11 +7,15 @@ interface LoadingScreenProps {
 }
 
 export const LoadingScreen = ({ isVisible }: LoadingScreenProps) => {
+  const { modo } = useModo()
   const [displayedText, setDisplayedText] = useState('')
   const [showModoRyuk, setShowModoRyuk] = useState(false)
   const [showToggle, setShowToggle] = useState(false)
   const [toggleEnabled, setToggleEnabled] = useState(false)
   const [wallpaper, setWallpaper] = useState<string | null>(null)
+
+  // Modo difroide/ruivo = tela de carregamento estilo UTMGRAM GABRIEL (só logo, sem "Modo RYUK" e toggle)
+  const isModoGabriel = modo === 'difroide' || modo === 'ruivo'
   
   const fullText = 'Utmgram.'
   const typingSpeed = 200 // ms por letra (mais lento para melhor visualização)
@@ -83,26 +88,26 @@ export const LoadingScreen = ({ isVisible }: LoadingScreenProps) => {
         currentIndex++
       } else {
         clearInterval(typingInterval)
-        
-        // 2. Após terminar a digitação, mostrar "Modo RYUK" após 600ms
-        setTimeout(() => {
-          setShowModoRyuk(true)
-          
-          // 3. Após mostrar "Modo RYUK", mostrar toggle desativado após 600ms
+        // Modo Gabriel (difroide/ruivo): só a digitação, sem "Modo RYUK" nem toggle
+        if (!isModoGabriel) {
+          // 2. Após terminar a digitação, mostrar "Modo RYUK" após 600ms
           setTimeout(() => {
-            setShowToggle(true)
-            
-            // 4. Após mostrar toggle, ativá-lo após 800ms
+            setShowModoRyuk(true)
+            // 3. Após mostrar "Modo RYUK", mostrar toggle desativado após 600ms
             setTimeout(() => {
-              setToggleEnabled(true)
-            }, 800)
+              setShowToggle(true)
+              // 4. Após mostrar toggle, ativá-lo após 800ms
+              setTimeout(() => {
+                setToggleEnabled(true)
+              }, 800)
+            }, 600)
           }, 600)
-        }, 600)
+        }
       }
     }, typingSpeed)
 
     return () => clearInterval(typingInterval)
-  }, [isVisible])
+  }, [isVisible, isModoGabriel])
 
   if (!isVisible) return null
 
@@ -146,7 +151,7 @@ export const LoadingScreen = ({ isVisible }: LoadingScreenProps) => {
         {/* Logo com efeito de digitação */}
         <h1 className="loading-logo">
           <span className="loading-logo-utm">{displayedText.substring(0, 3)}</span>
-          <span className={`loading-logo-gram ${toggleEnabled ? 'ryuk-active' : ''}`}>
+          <span className={`loading-logo-gram ${!isModoGabriel && toggleEnabled ? 'ryuk-active' : ''}`}>
             {displayedText.substring(3)}
           </span>
           {displayedText.length > 0 && displayedText.length < fullText.length && (
@@ -154,8 +159,8 @@ export const LoadingScreen = ({ isVisible }: LoadingScreenProps) => {
           )}
         </h1>
         
-        {/* "Modo RYUK" aparece após digitação */}
-        {showModoRyuk && (
+        {/* "Modo RYUK" e toggle só no modo ryu */}
+        {!isModoGabriel && showModoRyuk && (
           <div className="loading-modo-ryuk">
             <p className={`loading-modo-ryuk-text ${toggleEnabled ? 'ryuk-active' : ''}`}>
               Modo RYUK
@@ -163,8 +168,7 @@ export const LoadingScreen = ({ isVisible }: LoadingScreenProps) => {
           </div>
         )}
         
-        {/* Toggle Switch */}
-        {showToggle && (
+        {!isModoGabriel && showToggle && (
           <div className="loading-toggle-container">
             <button
               type="button"

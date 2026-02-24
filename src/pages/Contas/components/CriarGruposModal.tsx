@@ -357,10 +357,13 @@ export const CriarGruposModal = ({ isOpen, onClose, onSave, selectedContas }: Cr
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 overflow-y-auto p-4">
-      <div className="bg-[#161b22] border border-gray-700 rounded-xl shadow-xl w-full max-w-6xl my-4 overflow-hidden max-h-[95vh] flex flex-col">
-        {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-800 flex-shrink-0">
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 overflow-y-auto p-4">
+      <div
+        className="bg-gray-800/40 backdrop-blur-xl border border-gray-600/30 border-blue-500/20 rounded-xl shadow-2xl w-full max-w-6xl my-4 overflow-hidden max-h-[95vh] flex flex-col"
+        style={{ backgroundColor: 'rgba(31, 41, 55, 0.45)', backdropFilter: 'blur(24px) saturate(160%)' }}
+      >
+        {/* Header - Liquid glass + azul */}
+        <div className="flex items-center justify-between p-4 border-b border-gray-600/30 border-blue-500/10 bg-gray-800/30 backdrop-blur-sm flex-shrink-0">
           <div className="flex items-center gap-3">
             <Users className="w-5 h-5 text-blue-500" />
             <div>

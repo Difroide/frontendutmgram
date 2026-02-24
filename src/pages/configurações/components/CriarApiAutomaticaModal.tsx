@@ -252,11 +252,14 @@ export const CriarApiAutomaticaModal = ({
 
   return (
     <div
-      className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
       onKeyDown={handleKeyDown}
       tabIndex={-1}
     >
-      <div className="bg-gray-800/95 backdrop-blur-md rounded-lg border border-gray-600/30 shadow-xl max-w-2xl w-full max-h-[90vh] flex flex-col">
+      <div
+        className="bg-gray-800/40 backdrop-blur-xl rounded-xl border border-gray-600/30 border-blue-500/20 shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col"
+        style={{ backgroundColor: 'rgba(31, 41, 55, 0.45)', backdropFilter: 'blur(24px) saturate(160%)' }}
+      >
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-700/50">
           <div className="flex items-center gap-3">
