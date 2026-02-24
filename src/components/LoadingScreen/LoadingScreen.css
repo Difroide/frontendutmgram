@@ -1,0 +1,256 @@
+/* Loading Screen - Tela cheia */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fundo da interface (mesmo do app) ou wallpaper */
+.loading-background {
+  position: absolute;
+  inset: 0;
+  background-color: #040913;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+/* Wallpaper de imagem */
+.loading-wallpaper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Overlay para wallpaper de imagem */
+.loading-wallpaper-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Video background */
+.loading-background-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Overlay para vídeo */
+.loading-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Conteúdo centralizado */
+.loading-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Logo com efeito de digitação */
+.loading-logo {
+  font-size: 4rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.loading-logo-utm {
+  color: white;
+  font-weight: 800;
+}
+
+.loading-logo-gram {
+  color: #3b82f6; /* blue-500 */
+  font-weight: 800;
+  transition: color 0.3s ease;
+}
+
+.loading-logo-gram.ryuk-active {
+  color: #dc2626; /* red-600 */
+}
+
+/* Cursor piscante */
+.loading-cursor {
+  color: #3b82f6;
+  font-weight: 300;
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* "Modo RYUK" */
+.loading-modo-ryuk {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.loading-modo-ryuk-text {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: white;
+  margin: 0;
+  text-align: center;
+  letter-spacing: 0.1em;
+  transition: color 0.3s ease;
+}
+
+.loading-modo-ryuk-text.ryuk-active {
+  color: #dc2626; /* red-600 */
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Container do Toggle */
+.loading-toggle-container {
+  animation: fadeInUp 0.5s ease-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Toggle Switch */
+.loading-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.1s ease;
+}
+
+.loading-toggle:active {
+  transform: scale(0.95);
+}
+
+.loading-toggle-track {
+  position: relative;
+  display: block;
+  width: 60px;
+  height: 32px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.loading-toggle.enabled .loading-toggle-track {
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+  border-color: #dc2626;
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+}
+
+.loading-toggle.disabled .loading-toggle-track {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.loading-toggle-handle {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: white;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.loading-toggle.enabled .loading-toggle-handle {
+  transform: translateX(28px);
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
+}
+
+.loading-toggle.disabled .loading-toggle-handle {
+  transform: translateX(0);
+}
+
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .loading-logo {
+    font-size: 3rem;
+  }
+  
+  .loading-modo-ryuk-text {
+    font-size: 1.25rem;
+  }
+  
+  .loading-selector-container {
+    width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loading-logo {
+    font-size: 2.5rem;
+  }
+  
+  .loading-modo-ryuk-text {
+    font-size: 1rem;
+  }
+  
+  .loading-selector-container {
+    width: 200px;
+  }
+}
+

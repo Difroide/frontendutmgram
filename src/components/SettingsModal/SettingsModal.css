@@ -1,0 +1,51 @@
+/* Container do Modal de Configurações */
+.settings-modal-container {
+  animation: modalFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animação de Fade/Slide ao trocar de seção */
+.settings-content-fade {
+  animation: contentFadeSlide 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes contentFadeSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scroll customizado para o conteúdo */
+.settings-modal-container ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.settings-modal-container ::-webkit-scrollbar-track {
+  background: rgba(31, 41, 55, 0.3);
+  border-radius: 4px;
+}
+
+.settings-modal-container ::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.5);
+  border-radius: 4px;
+}
+
+.settings-modal-container ::-webkit-scrollbar-thumb:hover {
+  background: rgba(75, 85, 99, 0.7);
+}
+

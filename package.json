@@ -1,0 +1,95 @@
+{
+  "name": "interface-desktop",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "electron": "electron .",
+    "electron:dev": "concurrently -k \"vite\" \"wait-on -d 5000 -t 120000 http-get://localhost:5180 && cross-env NODE_ENV=development electron .\"",
+    "build:electron": "vite build && electron-builder",
+    "build:win": "vite build && electron-builder --win",
+    "build:win:portable": "vite build && electron-builder --win portable",
+    "dist": "npm run build && electron-builder"
+  },
+  "build": {
+    "appId": "com.backzin.app",
+    "productName": "Backzin",
+    "copyright": "Copyright © 2025",
+    "directories": {
+      "buildResources": "build",
+      "output": "dist-installer"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "node_modules/**/*",
+      "package.json",
+      "!node_modules/**/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!node_modules/**/{test,__tests__,tests,powered-test,example,examples}",
+      "!node_modules/**/*.d.ts",
+      "!node_modules/**/*.map"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "requestedExecutionLevel": "requireAdministrator",
+      "publisherName": "Backzin"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Backzin",
+      "deleteAppDataOnUninstall": false,
+      "artifactName": "${productName}-${version}-Setup.${ext}"
+    },
+    "extraMetadata": {
+      "main": "electron/main.js"
+    }
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "axios": "^1.13.2",
+    "dotenv": "^17.2.3",
+    "lucide-react": "^0.294.0",
+    "megajs": "^1.3.9",
+    "node-unrar-js": "^2.0.2",
+    "pixi.js": "^7.4.3",
+    "playwright": "^1.57.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.0",
+    "recharts": "^3.6.0",
+    "smart-buffer": "^4.2.0",
+    "socks-proxy-agent": "^8.0.5",
+    "sonner": "^2.0.7",
+    "sql.js": "^1.13.0",
+    "telegram": "^2.26.22"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.16",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.8",
+    "wait-on": "^7.2.0"
+  }
+}

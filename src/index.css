@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Scrollbar - Liquid Glass Design */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(31, 41, 55, 0.3);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(107, 114, 128, 0.3);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-primary-light);
+  opacity: 0.4;
+  border-color: var(--theme-primary-light);
+  opacity: 0.5;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(75, 85, 99, 0.5) rgba(31, 41, 55, 0.3);
+}
+
+/* Custom Select/Dropdown Styles - Liquid Glass */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239ca3af' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.5rem;
+}
+
+select:focus {
+  outline: none;
+  /* SVG será gerado dinamicamente via JS ou usar CSS variable */
+  filter: hue-rotate(0deg) saturate(1);
+}
+
+select option {
+  background-color: rgba(31, 41, 55, 0.95);
+  backdrop-filter: blur(8px);
+  color: #e5e7eb;
+  padding: 0.5rem;
+}
+
+select option:hover {
+  background-color: color-mix(in srgb, var(--theme-primary) 30%, transparent);
+}
+
+select option:checked,
+select option:focus {
+  background-color: color-mix(in srgb, var(--theme-primary) 40%, transparent);
+  color: #ffffff;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #root {
+    width: 100%;
+    height: 100%;
+  }
+  
+  :root {
+    /* CSS Variables para temas - valores padrão */
+    --theme-primary: #3b82f6;
+    --theme-primary-dark: #2563eb;
+    --theme-primary-light: #60a5fa;
+    --theme-accent: #60a5fa;
+    --theme-background: #0f172a;
+    --theme-background-dark: #020617;
+    --theme-text: #ffffff;
+    --theme-text-secondary: #e5e7eb;
+    --theme-border: #374151;
+    --theme-hover: #374151;
+    --theme-active: #1e40af;
+  }
+  
+  body {
+    @apply text-gray-900;
+    background: var(--theme-background);
+  }
+  
+  #root {
+    background: var(--theme-background);
+  }
+}
+
+@layer components {
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 text-white transition-all duration-200;
+    min-height: 44px;
+  }
+  
+  .sidebar-link:hover {
+    /* Estilos de hover aplicados via className */
+  }
+  
+  .sidebar-link.active {
+    /* Estilos de active aplicados via className */
+  }
+  
+  .sidebar-link:focus-visible {
+    @apply outline-none ring-2 ring-gray-700 ring-offset-2 ring-offset-gray-800;
+  }
+
+  /* Classes de tema usando CSS variables */
+  .text-theme-primary {
+    color: var(--theme-primary);
+  }
+
+  .bg-theme-primary {
+    background-color: var(--theme-primary);
+  }
+
+  .border-theme-primary {
+    border-color: var(--theme-primary);
+  }
+}
+
+/* 
+ * Nota: Classes azuis do Tailwind serão substituídas dinamicamente via JavaScript
+ * usando o hook useThemeClasses. Isso permite maior controle e compatibilidade.
+ */
+
+@keyframes gradient-rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradient-rainbow 3s ease infinite;
+  background-size: 200% 200%;
+}
+
